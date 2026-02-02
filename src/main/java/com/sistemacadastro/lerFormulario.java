@@ -21,7 +21,8 @@ public class lerFormulario {
       e.printStackTrace();
     }
   }
-  public ArrayList<String> getList(){
+
+  public ArrayList<String> getList() {
     return list;
   }
 
