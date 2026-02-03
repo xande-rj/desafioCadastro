@@ -9,11 +9,11 @@ public class entidadePet {
   private tipoPet tipoPet;
   private sexoPet sexoPet;
   private entidadeEndereco endereco;
-  private int idadePet;
+  private float idadePet;
   private float pesoPet;
   private String racaoPet;
 
-  public entidadePet(String nome, tipoPet tipo, sexoPet sexo, entidadeEndereco endereco, int idade, float peso,
+  public entidadePet(String nome, tipoPet tipo, sexoPet sexo, entidadeEndereco endereco, float idade, float peso,
       String racao) {
     this.nomePet = nome;
     this.tipoPet = tipo;
