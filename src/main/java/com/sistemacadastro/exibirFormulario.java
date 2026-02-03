@@ -17,6 +17,9 @@ public class exibirFormulario {
   public tipoPet tipo;
   public sexoPet sexo;
   public entidadeEndereco endereco = new entidadeEndereco();
+  public float idade;
+  public float peso;
+  public String raca;
 
   public void lista() {
     int i = 0;
@@ -36,9 +39,13 @@ public class exibirFormulario {
         setEndereco();
         i++;
       } else if (i == 4) {
+        setIdade();
         i++;
-      }
-      else{
+      } else if (i == 5) {
+        setPeso();
+        i++;
+      } else if (i == 6) {
+        setRaca();
         i++;
       }
     }
@@ -94,6 +101,21 @@ public class exibirFormulario {
     System.out.println("iii. Rua:");
     endereco.setRua(sc.nextLine());
 
-    System.out.println(endereco.toString());
+  }
+
+  public void setIdade() {
+    String entrada = sc.next().replace(",", ".");
+    idade = Float.parseFloat(entrada);
+  }
+
+  public void setPeso() {
+
+    String entrada = sc.next().replace(",", ".");
+    peso = Float.parseFloat(entrada);
+  }
+
+  public void setRaca() {
+    sc.next();
+    raca = sc.nextLine();
   }
 }
