@@ -4,19 +4,34 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class exibirFormulario {
-  static public lerFormulario lF = new lerFormulario();
-  static public Scanner sc = new Scanner(System.in);
+  ArrayList<String> lista;
+  static lerFormulario lf = new lerFormulario();
+  ArrayList<String> responta = new ArrayList<>();
+  Scanner sc = new Scanner(System.in);
+  private String regex = ".*[!@#$%^&*(),.?\":{}|<>].*";
 
-  public static void main(String[] args) {
-    lF.leitura();
-    String tes = "";
-    ArrayList<String> perguntas = lF.getList();
-    for (int i = 0; i < perguntas.size(); i++) {
-      if (i % 2 == 0) {
-        System.out.println(perguntas.get(i));
-        tes = sc.nextLine();
-        System.out.println(tes);
+  public String nomeCompleto;
+
+  public void lista() {
+    int i = 0;
+    lista = lf.getList();
+    while (i < 7) {
+      System.out.println(lista.get(i));
+      responta.add(sc.nextLine());
+
+      nomeCompleto = responta.get(0);
+      String[] te = nomeCompleto.split(" ");
+      if (te.length < 2) {
+        System.out.println("Erro o animal precisa de um sobrenome");
+        break;
       }
+      if (nomeCompleto.matches(regex)) {
+        System.out.println("Erro de caracter especial ");
+        break;
+      }
+      i++;
     }
+
   }
+
 }
