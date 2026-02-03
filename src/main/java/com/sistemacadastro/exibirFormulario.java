@@ -2,7 +2,7 @@ package com.sistemacadastro;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import com.sistemacadastro.entidade.entidadeEndereco;
 import com.sistemacadastro.enums.sexoPet;
 import com.sistemacadastro.enums.tipoPet;
 
@@ -16,6 +16,7 @@ public class exibirFormulario {
   public String nomeCompleto;
   public tipoPet tipo;
   public sexoPet sexo;
+  public entidadeEndereco endereco = new entidadeEndereco();
 
   public void lista() {
     int i = 0;
@@ -23,20 +24,27 @@ public class exibirFormulario {
     while (i < 7) {
       System.out.println(lista.get(i));
       if (i == 0) {
-        nome();
+        setNome();
         i++;
       } else if (i == 1) {
-        tipo();
+        setTipo();
         i++;
       } else if (i == 2) {
-        sexo();
+        setSexo();
         i++;
       } else if (i == 3) {
+        setEndereco();
+        i++;
+      } else if (i == 4) {
+        i++;
+      }
+      else{
+        i++;
       }
     }
   }
 
-  public void nome() {
+  public void setNome() {
     nomeCompleto = sc.nextLine();
     String[] te = nomeCompleto.split(" ");
     if (te.length < 2) {
@@ -47,7 +55,7 @@ public class exibirFormulario {
 
   }
 
-  public void tipo() {
+  public void setTipo() {
     System.out.println("1. Cachorro\n 2. Gato");
 
     switch (sc.nextInt()) {
@@ -63,7 +71,7 @@ public class exibirFormulario {
 
   }
 
-  public void sexo() {
+  public void setSexo() {
     System.out.println("1. Masculino\n 2. Feminino");
     switch (sc.nextInt()) {
       case 1:
@@ -75,5 +83,17 @@ public class exibirFormulario {
       default:
         break;
     }
+  }
+
+  public void setEndereco() {
+    System.out.println("i. Numero da casa");
+    endereco.setNumero(sc.nextInt());
+    sc.nextLine();
+    System.out.println("ii. Cidade: ");
+    endereco.setCidade(sc.nextLine());
+    System.out.println("iii. Rua:");
+    endereco.setRua(sc.nextLine());
+
+    System.out.println(endereco.toString());
   }
 }
