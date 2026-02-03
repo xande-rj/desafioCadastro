@@ -23,7 +23,15 @@ public class lerFormulario {
   }
 
   public ArrayList<String> getList() {
-    return list;
+    leitura();
+    ArrayList<String> listLimpa = new ArrayList<String>();
+    for (int i = 0; i < list.size(); i++) {
+
+      if (i % 2 == 0) {
+        listLimpa.add(list.get(i));
+      }
+    }
+    return listLimpa;
   }
 
 }
