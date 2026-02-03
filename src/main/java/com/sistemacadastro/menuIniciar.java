@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class menuIniciar {
 
-  public static Scanner sc = new Scanner(System.in);
-  public static String texto = " 1. Cadastrar um novo pet\n 2. Alterar os dados do pet cadastrado\n 3. Deletar um pet cadastrado\n 4. Listar todos os pets cadastrados\n 5. Listar pets por algum critério (idade, nome, raça)\n 6. Sair";
+  private static Scanner sc = new Scanner(System.in);
+  private static String texto = " 1. Cadastrar um novo pet\n 2. Alterar os dados do pet cadastrado\n 3. Deletar um pet cadastrado\n 4. Listar todos os pets cadastrados\n 5. Listar pets por algum critério (idade, nome, raça)\n 6. Sair";
+  private static exibirFormulario ex = new exibirFormulario();
 
   public static void main(String[] args) {
 
@@ -16,7 +17,7 @@ public class menuIniciar {
   public static void menu(int numb) {
     switch (numb) {
       case 1:
-
+        ex.lista();
         break;
       case 2:
 
