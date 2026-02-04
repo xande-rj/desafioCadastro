@@ -46,4 +46,8 @@ public class entidadePet {
     return "Nome Pet "+nomePet + " ,Tipo pet "+tipoPet.getDescricao() +" ,Sexo Pet "+ sexoPet.getSexo() +" ,endereco " +endereco.toString() +" ,idade "+ idadePet +" ,peso "+ pesoPet +" ,raca "+ racaPet;
   }
 
+  public String getNome(){
+    return this.nomePet;
+  }
+
 }

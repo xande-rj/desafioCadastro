@@ -1,6 +1,5 @@
 package com.sistemacadastro.infra;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,14 +14,12 @@ public class salvaFormulario {
   LocalDateTime dateTimeObj = LocalDateTime.now();
   DateTimeFormatter myFormatter = DateTimeFormatter.ofPattern("yyyyMMdd'T'HHmm");
 
-  Path arquivo = Paths.get(pasta.getFileName() + "/" + dateTimeObj.format(myFormatter) + ".txt");
-
   public void formatarPet(entidadePet Pet) {
 
     System.out.println(Pet.toString());
 
     verificarPasta();
-    criarArquivo();
+    criarArquivo(Pet.getNome());
   }
 
   public void salvarTxt() {
@@ -45,10 +42,15 @@ public class salvaFormulario {
 
   }
 
-  private void criarArquivo() {
-    if (Files.notExists(this.arquivo)) {
+  private void criarArquivo(String nomePet) {
+    Path arquivo = Paths
+        .get(pasta.getFileName() + "/" + nomePet.replace(" ", "").toUpperCase() + dateTimeObj.format(myFormatter)
+            + ".txt");
+
+    if (Files.notExists(arquivo)) {
       try {
-        Files.createFile(this.arquivo);
+        Files.createFile(arquivo);
+        System.out.println("Arquivo criado com ssucesso!!");
       } catch (IOException e) {
         e.printStackTrace();
       }
