@@ -6,6 +6,8 @@ import com.sistemacadastro.entidade.entidadeEndereco;
 import com.sistemacadastro.entidade.entidadePet;
 import com.sistemacadastro.enums.sexoPet;
 import com.sistemacadastro.enums.tipoPet;
+import com.sistemacadastro.infra.lerFormulario;
+import com.sistemacadastro.infra.salvaFormulario;
 
 public class exibirFormulario {
   private ArrayList<String> lista;
@@ -55,7 +57,7 @@ public class exibirFormulario {
     }
 
     Pet = new entidadePet(nomeCompleto, tipo, sexo, endereco, idade, peso, raca);
-    System.out.println(Pet.toString());
+    salvar(Pet);
   }
 
   public void setNome() {
@@ -160,5 +162,11 @@ public class exibirFormulario {
         throw new Error("raca nao pode conter caracter especial");
       }
     }
+  }
+
+  private void salvar(entidadePet Pet) {
+    salvaFormulario salvaFormulario = new salvaFormulario();
+
+    salvaFormulario.formatarPet(Pet);
   }
 }

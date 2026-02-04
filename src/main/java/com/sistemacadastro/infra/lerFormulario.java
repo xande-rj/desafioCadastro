@@ -1,4 +1,4 @@
-package com.sistemacadastro;
+package com.sistemacadastro.infra;
 
 import java.io.BufferedReader;
 import java.io.File;

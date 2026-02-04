@@ -20,6 +20,6 @@ public class entidadeEndereco {
 
   @Override
   public String toString() {
-    return numeroCasa + cidade + rua;
+    return "Rua " + numeroCasa + ", " + cidade + ", " + rua;
   }
 }

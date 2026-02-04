@@ -43,7 +43,7 @@ public class entidadePet {
 
   @Override
   public String toString() {
-    return nomePet + tipoPet.getDescricao() + sexoPet.getSexo() + endereco.toString() + idadePet + pesoPet + racaPet;
+    return "Nome Pet "+nomePet + " ,Tipo pet "+tipoPet.getDescricao() +" ,Sexo Pet "+ sexoPet.getSexo() +" ,endereco " +endereco.toString() +" ,idade "+ idadePet +" ,peso "+ pesoPet +" ,raca "+ racaPet;
   }
 
 }
