@@ -3,23 +3,25 @@ package com.sistemacadastro;
 import java.util.ArrayList;
 import java.util.Scanner;
 import com.sistemacadastro.entidade.entidadeEndereco;
+import com.sistemacadastro.entidade.entidadePet;
 import com.sistemacadastro.enums.sexoPet;
 import com.sistemacadastro.enums.tipoPet;
 
 public class exibirFormulario {
   private ArrayList<String> lista;
   static lerFormulario lf = new lerFormulario();
-  ArrayList<String> responta = new ArrayList<>();
   private Scanner sc = new Scanner(System.in);
   private String regex = ".*[!@#$%^&*(),.?\":{}|<>].*";
 
   public String nomeCompleto;
   public tipoPet tipo;
   public sexoPet sexo;
-  public entidadeEndereco endereco = new entidadeEndereco();
   public float idade;
   public float peso;
   public String raca;
+
+  public entidadePet Pet;
+  public entidadeEndereco endereco = new entidadeEndereco();
 
   public void lista() {
     int i = 0;
@@ -27,6 +29,7 @@ public class exibirFormulario {
     while (i < 7) {
       System.out.println(lista.get(i));
       if (i == 0) {
+
         setNome();
         i++;
       } else if (i == 1) {
@@ -46,18 +49,26 @@ public class exibirFormulario {
         i++;
       } else if (i == 6) {
         setRaca();
+
         i++;
       }
     }
+
+    Pet = new entidadePet(nomeCompleto, tipo, sexo, endereco, idade, peso, raca);
+    System.out.println(Pet.toString());
   }
 
   public void setNome() {
     nomeCompleto = sc.nextLine();
-    String[] te = nomeCompleto.split(" ");
-    if (te.length < 2) {
-      throw new Error("Erro o animal precisa de um sobrenome");
-    } else if (nomeCompleto.matches(regex)) {
-      throw new Error("Erro de caracter especial ");
+    if (nomeCompleto.isEmpty()) {
+      nomeCompleto = "";
+    } else {
+      String[] te = nomeCompleto.split(" ");
+      if (te.length < 2) {
+        throw new Error("Erro o animal precisa de um sobrenome");
+      } else if (nomeCompleto.matches(regex)) {
+        throw new Error("Erro de caracter especial ");
+      }
     }
 
   }
@@ -93,9 +104,16 @@ public class exibirFormulario {
   }
 
   public void setEndereco() {
-    System.out.println("i. Numero da casa");
-    endereco.setNumero(sc.nextInt());
     sc.nextLine();
+    System.out.println("i. Numero da casa");
+
+    String numeroEnderecoString = sc.nextLine();
+    if (numeroEnderecoString.isEmpty()) {
+      endereco.setNumero(0);
+    } else {
+
+      endereco.setNumero(Integer.parseInt(numeroEnderecoString));
+    }
     System.out.println("ii. Cidade: ");
     endereco.setCidade(sc.nextLine());
     System.out.println("iii. Rua:");
@@ -104,18 +122,43 @@ public class exibirFormulario {
   }
 
   public void setIdade() {
-    String entrada = sc.next().replace(",", ".");
+    String entrada = sc.nextLine().replace(",", ".");
+    if (entrada.isEmpty()) {
+      entrada = "0";
+    }
     idade = Float.parseFloat(entrada);
+
+    if (idade > 20) {
+      throw new Error("idade precisa ser menor que 20");
+    }
   }
 
   public void setPeso() {
 
-    String entrada = sc.next().replace(",", ".");
+    String entrada = sc.nextLine().replace(",", ".");
+
+    if (entrada.isEmpty()) {
+      entrada = "0";
+    } else {
+
+      peso = Float.parseFloat(entrada);
+
+      if (peso > 60 || peso < 0.5) {
+        throw new Error("Peso precisa ser maior que 0.5 ou menor que 60kg");
+      }
+    }
     peso = Float.parseFloat(entrada);
+
   }
 
   public void setRaca() {
-    sc.next();
     raca = sc.nextLine();
+    if (raca.isEmpty()) {
+      raca = "";
+    } else {
+      if (raca.matches(regex)) {
+        throw new Error("raca nao pode conter caracter especial");
+      }
+    }
   }
 }
